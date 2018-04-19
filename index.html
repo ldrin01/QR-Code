@@ -4,18 +4,28 @@
 	<title>QR Code</title>
 </head>
 <body style="margin: 0;">
-	<input oninput="convert()" id="content" type="Text" name="To be code"><br>
+	<div style="width: 100%;" style="display: block; border: 3px solid #38c; padding: 10px;">
+		Enter text here to convert into QR Code: <br>
+		<textarea name="" oninput="convert()" id="content" type="text" style="width: 98%; margin: 1%; padding: 0;"></textarea>
+	</div>
+	<br>
 	<div width="100px">
 		<img id="imageCode" src="" alt="" style="position: absolute; width: 40%; right: 30%; left: 30%; margin-top: 0%;">
-		<img id="logo" src="box.png" alt="" style="position: absolute; width: 10%; right: 45%; left: 45%; margin-top: 15.5%;">
+		<img id="logo" src="box.png" alt="" style="position: absolute; width: 10%; right: 45%; left: 45%; margin-top: 15.5%; visibility: hidden;">
 	</div>
 	<script type="text/javascript">
 		function convert(){
 			var value = document.getElementById('content').value;
-			// alert (value);
-			var  source = "https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=" + value + "&charset-target=UTF-8" + "&charset-source=UTF-8" + "&ecc=L" + "&color=000000&bgcolor=ffffff" + "&margin=15" + "&format=png";
+			if (value != "") {
 
-			document.getElementById('imageCode').src = source;
+				var  source = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" + value + "&charset-target=UTF-8" + "&charset-source=UTF-8" + "&ecc=L" + "&color=000000&bgcolor=ffffff" + "&margin=15" + "&format=png";
+				
+				document.getElementById('imageCode').src = source;
+				document.getElementById('logo').style.visibility = "hidden";
+
+			}if (value == "") {
+				document.getElementById('logo').style.visibility = "hidden";
+			}
 		}
 	</script>
 </body>
