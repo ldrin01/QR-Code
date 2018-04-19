@@ -21,7 +21,7 @@
 				var  source = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" + value + "&charset-target=UTF-8" + "&charset-source=UTF-8" + "&ecc=L" + "&color=000000&bgcolor=ffffff" + "&margin=15" + "&format=png";
 				
 				document.getElementById('imageCode').src = source;
-				document.getElementById('logo').style.visibility = "hidden";
+				document.getElementById('logo').style.visibility = "visible";
 
 			}if (value == "") {
 				document.getElementById('logo').style.visibility = "hidden";
