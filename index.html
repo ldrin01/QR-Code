@@ -2,29 +2,45 @@
 <html>
 <head>
 	<title>QR Code</title>
+	<meta charset="UTF-8">
 </head>
 <body style="margin: 0;">
 	<div style="width: 100%;" style="display: block; border: 3px solid #38c; padding: 10px;">
-		Enter text here to convert into QR Code: <br>
+		<p style="font-size: 200%; margin: 15px;">&nbsp&nbspEnter text here to convert into QR Code:</p>
 		<textarea name="" oninput="convert()" id="content" type="text" style="width: 98%; margin: 1%; padding: 0;"></textarea>
 	</div>
 	<br>
 	<div width="100px">
-		<img id="imageCode" src="" alt="" style="position: absolute; width: 40%; right: 30%; left: 30%; margin-top: 0%;">
-		<img id="logo" src="box.png" alt="" style="position: absolute; width: 10%; right: 45%; left: 45%; margin-top: 15.5%; visibility: hidden;">
+		<img id="imageCode" src="" alt="" style="position: absolute; width: 30%; right: 35%; left: 35%; margin-top: 0%;">
+		<img id="logo" src="box.png" alt="" style="position: absolute; width: 10%; right: 45%; left: 45%; margin-top: 10.5%; visibility: hidden; display: block;">
 	</div>
+	<button id="logoBtn" style="right: 5%;" onclick="enableLogo('yes')">Enable logo</button>
 	<script type="text/javascript">
 		function convert(){
 			var value = document.getElementById('content').value;
 			if (value != "") {
 
-				var  source = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" + value + "&charset-target=UTF-8" + "&charset-source=UTF-8" + "&ecc=L" + "&color=000000&bgcolor=ffffff" + "&margin=15" + "&format=png";
+				var  source = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=" + value + "&charset-target=UTF-8" + "&charset-source=UTF-8" + "&ecc=L" + "&color=000000&bgcolor=ffffff" + "&margin=15" + "&format=png";
 				
 				document.getElementById('imageCode').src = source;
-				document.getElementById('logo').style.visibility = "hidden";
+				document.getElementById('logo').style.visibility = "visible";
+				document.getElementById('imageCode').style.visibility = "visible";
 
 			}if (value == "") {
 				document.getElementById('logo').style.visibility = "hidden";
+				document.getElementById('imageCode').style.visibility = "hidden";
+			}
+		}
+
+		function enableLogo(value){
+			if (value == "yes") {
+				document.getElementById("logoBtn").setAttribute("onclick", "enableLogo('no')");
+				document.getElementById('logo').style.display = "none";
+				// alert ("no");
+			}else if (value == "no") {
+				document.getElementById("logoBtn").setAttribute("onclick", "enableLogo('yes')");
+				document.getElementById('logo').style.display = "block";
+				// alert ("yes");
 			}
 		}
 	</script>
